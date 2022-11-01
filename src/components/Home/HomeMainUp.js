@@ -8,7 +8,7 @@ const HomeMainUp = () => {
         <div>
           <h1 className="shadow-underline2  text-center font-bold mb-4">
             {" "}
-            About <span className="text-warning">Us</span>
+            About<span className="text-warning">Us</span>
           </h1>
         </div>
         <div class="row">
