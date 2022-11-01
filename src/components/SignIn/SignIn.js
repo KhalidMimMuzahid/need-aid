@@ -18,6 +18,7 @@ const SignIn = () => {
   const navigate = useNavigate();
   const { signInWithGoogle, signInWithEmail } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
+  const [error, setError] = useState("");
   const handleSubmitForm = (e) => {
     e.preventDefault();
     console.log(userInfo);
@@ -33,6 +34,7 @@ const SignIn = () => {
       .catch((error) => {
         const errorMessage = error.message;
         console.log(errorMessage);
+        setError(errorMessage);
       });
   };
   const handleinputChange = (e) => {
@@ -86,6 +88,7 @@ const SignIn = () => {
                     id="formControlLg"
                     type="email"
                     size="lg"
+                    required
                   />
                   <MDBInput
                     onChange={handleinputChange}
@@ -95,8 +98,9 @@ const SignIn = () => {
                     id="formControlLg"
                     type="password"
                     size="lg"
+                    required
                   />
-
+                  {error && <p className="text-danger">{error}</p>}
                   <p className="small mb-2 pb-lg-2">
                     <a className="text-white-50" href="#!">
                       Forgot password?

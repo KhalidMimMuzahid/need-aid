@@ -20,6 +20,7 @@ const SignUp = () => {
     signUpWithEmailAndPassword,
     updateUserProfileInfo,
   } = useContext(AuthContext);
+  const [passwordError, setPasswordError] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -48,6 +49,25 @@ const SignUp = () => {
     const newUser = { ...userInfo };
     newUser[field] = value;
     setUserInfo(newUser);
+    if (field === "password") {
+      if (value.length < 6) {
+        setPasswordError(
+          "the lenght of password must be at least 6 characters"
+        );
+      } else if (!/[A-Z]/.test(value)) {
+        setPasswordError("the password must contain at least one Uppercase");
+      } else if (!/[a-z]/.test(value)) {
+        setPasswordError("the password must contain at least one lowercase");
+      } else if (!/[0-9]/.test(value)) {
+        setPasswordError("the password must contain at least one number");
+      } else if (!/[\W]{1,}/.test(value)) {
+        setPasswordError(
+          "the password must contain at least one special character"
+        );
+      } else {
+        setPasswordError("");
+      }
+    }
   };
   const handleGoogleSignIn = () => {
     signInWithGoogle()
@@ -104,6 +124,7 @@ const SignUp = () => {
                     id="formControlLg"
                     type="text"
                     size="lg"
+                    required
                   />
                   <MDBInput
                     onChange={handleinputChange}
@@ -113,6 +134,7 @@ const SignUp = () => {
                     id="formControlLg"
                     type="email"
                     size="lg"
+                    required
                   />
                   <MDBInput
                     onChange={handleinputChange}
@@ -122,13 +144,18 @@ const SignUp = () => {
                     id="formControlLg"
                     type="password"
                     size="lg"
+                    required
                   />
+                  {passwordError ? (
+                    <p className="text-danger">{passwordError}</p>
+                  ) : (
+                    <p className="small mb-2 pb-lg-2 invisible">
+                      <a className="text-white-50" href="#!">
+                        Forgot password?
+                      </a>
+                    </p>
+                  )}
 
-                  <p className="small mb-2 pb-lg-2 invisible">
-                    <a className="text-white-50" href="#!">
-                      Forgot password?
-                    </a>
-                  </p>
                   <Button
                     type="submit"
                     variant="primary"

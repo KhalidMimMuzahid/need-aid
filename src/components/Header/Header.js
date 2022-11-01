@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaMailBulk, FaPhoneAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/UserContext";
 
 const Header = () => {
+  const { currentUser } = useContext(AuthContext);
+  const { displayName, uid } = currentUser;
+  console.log(currentUser);
   return (
     <div className="sticky-top header-sticky bg-info">
       <section className="py-1">
@@ -22,13 +26,19 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            <div className="col text-end">
-              <p className="mb-0">
-                <Link to="/signin" className="button">
-                  Join Us <i className="fa-solid fa-heart"></i>
-                </Link>
-              </p>
-            </div>
+            {uid ? (
+              <div>
+                <h1>{displayName}</h1>
+              </div>
+            ) : (
+              <div className="col text-end">
+                <p className="mb-0">
+                  <Link to="/signin" className="button">
+                    Join Us <i className="fa-solid fa-heart"></i>
+                  </Link>
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
