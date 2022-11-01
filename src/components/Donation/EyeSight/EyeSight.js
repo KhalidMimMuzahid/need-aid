@@ -48,7 +48,7 @@ const EyeSight = () => {
           className="btn btn-outline-info"
           data-bs-target="#exampleModalToggle2"
           data-bs-toggle="modal"
-          // onclick="updateFundToDB('healthFund','disablity')"
+          //  onClick="updateFundToDB('healthFund','disablity')"
         >
           Submit
         </button>

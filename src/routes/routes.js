@@ -21,6 +21,8 @@ import ViewOur from "../components/ViewOur/ViewOur";
 import PopulerWork from "../components/ViewOur/PopulerWork/PopulerWork";
 import TopDonor from "../components/ViewOur/TopDonor/TopDonor";
 import TotalFund from "../components/ViewOur//TotalFund/TotalFund";
+import SignIn from "../components/SignIn/SignIn";
+import SignUp from "../components/SignUp/SignUp";
 
 export const routes = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ export const routes = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
       {
         path: "/viewour",

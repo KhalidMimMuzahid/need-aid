@@ -11,27 +11,27 @@ const HomeMainUp = () => {
             About<span className="text-warning">Us</span>
           </h1>
         </div>
-        <div class="row">
-          <div class="col-md-6">
+        <div className="row">
+          <div className="col-md-6">
             <div
-              class="bg-image hover-overlay ripple shadow-2-strong rounded-5"
+              className="bg-image hover-overlay ripple shadow-2-strong rounded-5"
               data-mdb-ripple-color="light"
             >
-              <img src={about} class="img-fluid" />
+              <img src={about} className="img-fluid" />
               <a href="#!">
                 <div
-                  class="mask"
+                  className="mask"
                   style={{ backgroundColor: " rgba(251, 251, 251, 0.15)" }}
                 ></div>
               </a>
             </div>
           </div>
 
-          <div class="col-md-6 gx-5 mb-4">
-            <h4 classNmame="mb-4">
+          <div className="col-md-6 gx-5 mb-4">
+            <h4 className="mb-4">
               <strong>Need Aid | a Donation Service </strong>
             </h4>
-            <p class="text-muted">
+            <p className="text-muted">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
               consequatur eligendi quisquam doloremque vero ex debitis veritatis
               placeat unde animi laborum sapiente illo possimus, commodi
@@ -40,7 +40,7 @@ const HomeMainUp = () => {
             <p>
               <strong>Doloremque vero ex debitis veritatis?</strong>
             </p>
-            <p class="text-muted">
+            <p className="text-muted">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
               itaque voluptate nesciunt laborum incidunt. Officia, quam
               consectetur. Earum eligendi aliquam illum alias, unde optio
@@ -49,7 +49,7 @@ const HomeMainUp = () => {
             <p>
               <strong>Doloremque vero ex debitis veritatis?</strong>
             </p>
-            <p class="text-muted">
+            <p className="text-muted">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
               itaque voluptate nesciunt laborum incidunt. Officia, quam
               consectetur. Earum eligendi aliquam illum alias, unde optio

@@ -8,18 +8,19 @@ import sadaqah from "./../../../assets/img/sadaqah.jpg";
 
 const DonateCard = () => {
   return (
-    <section class="container mt-5">
-      <h1 class=" shadow-underline text-center fw-bold mb-5 mt-5 ">
-        Together Let’s Make a <span class="text-warning mt-5">Change .!</span>
+    <section className="container mt-5">
+      <h1 className=" shadow-underline text-center fw-bold mb-5 mt-5 ">
+        Together Let’s Make a{" "}
+        <span className="text-warning mt-5">Change .!</span>
       </h1>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
-        <div class="col">
-          <div class="card h-100 inner bg-info ">
-            <img src={fire} class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Fire Victims</h5>
+      <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 ">
+        <div className="col">
+          <div className="card h-100 inner bg-info ">
+            <img src={fire} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title fw-bold">Fire Victims</h5>
               <p
-                class="card-text"
+                className="card-text"
                 style={{ overflow: "scroll", height: "150px" }}
               >
                 As the fire occurred suddenly, people could not save anything.
@@ -30,65 +31,68 @@ const DonateCard = () => {
                 their textbook and all study materials.
               </p>
             </div>
-            <div class="card-footer text-center">
+            <div className="card-footer text-center">
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-info" id="exampleModalLabel">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5
+                        className="modal-title text-info"
+                        id="exampleModalLabel"
+                      >
                         {" "}
                         Get Touch !
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <form>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="text"
                             placeholder="Full Name"
-                            class="form-control"
+                            className="form-control"
                             id="inputName"
                             aria-describedby="emailHelp"
                           />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="email"
                             placeholder="Enter Email"
-                            class="form-control"
+                            className="form-control"
                             id="inputEmail"
                             aria-describedby="emailHelp"
                           />
-                          <div id="emailHelp" class="form-text"></div>
+                          <div id="emailHelp" className="form-text"></div>
                         </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text">৳</span>
+                        <div className="input-group mb-3">
+                          <span className="input-group-text">৳</span>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Amount"
                             aria-label="Amount "
                           />
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         id="raffle-submit"
                         type="submit"
-                        class="btn btn-outline-info"
+                        className="btn btn-outline-info"
                         data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                       >
@@ -96,7 +100,7 @@ const DonateCard = () => {
                       </button>
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -107,29 +111,29 @@ const DonateCard = () => {
               </div>
 
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1"
+                tabIndex="-1"
               >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <h1> Thanks for your helping.!</h1>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -140,24 +144,24 @@ const DonateCard = () => {
               </div>
               <button
                 id=""
-                class="button-two"
+                className="button-two"
                 data-bs-toggle="modal"
                 href="#exampleModal"
               >
-                Donate <i class="fa-solid fa-heart"></i>
+                Donate <i className="fa-solid fa-heart"></i>
               </button>
             </div>
           </div>
 
           {/* // second   */}
         </div>
-        <div class="col shadow-lg">
-          <div class="card h-100 inner bg-info ">
-            <img src={flood} class="card-img-top" alt="..." />
-            <div class="card-body ">
-              <h5 class="card-title fw-bold">Flood Relief</h5>
+        <div className="col shadow-lg">
+          <div className="card h-100 inner bg-info ">
+            <img src={flood} className="card-img-top" alt="..." />
+            <div className="card-body ">
+              <h5 className="card-title fw-bold">Flood Relief</h5>
               <p
-                class="card-text "
+                className="card-text "
                 style={{ overflow: "scroll", height: "150px" }}
               >
                 Bangladesh, a land of natural beauty and resources, blessed with
@@ -171,65 +175,68 @@ const DonateCard = () => {
                 relief.
               </p>
             </div>
-            <div class="card-footer text-center">
+            <div className="card-footer text-center">
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-info" id="exampleModalLabel">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5
+                        className="modal-title text-info"
+                        id="exampleModalLabel"
+                      >
                         {" "}
                         Get Touch !
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <form>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="text"
                             placeholder="Full Name"
-                            class="form-control"
+                            className="form-control"
                             id="inputName"
                             aria-describedby="emailHelp"
                           />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="email"
                             placeholder="Enter Email"
-                            class="form-control"
+                            className="form-control"
                             id="inputEmail"
                             aria-describedby="emailHelp"
                           />
-                          <div id="emailHelp" class="form-text"></div>
+                          <div id="emailHelp" className="form-text"></div>
                         </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text">৳</span>
+                        <div className="input-group mb-3">
+                          <span className="input-group-text">৳</span>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Amount"
                             aria-label="Amount "
                           />
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         id="raffle-submit"
                         type="submit"
-                        class="btn btn-outline-info"
+                        className="btn btn-outline-info"
                         data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                       >
@@ -237,7 +244,7 @@ const DonateCard = () => {
                       </button>
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -248,29 +255,29 @@ const DonateCard = () => {
               </div>
 
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1"
+                tabIndex="-1"
               >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <h1> Thanks for your helping.!</h1>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -281,24 +288,24 @@ const DonateCard = () => {
               </div>
               <button
                 id=""
-                class="button-two"
+                className="button-two"
                 data-bs-toggle="modal"
                 href="#exampleModal"
               >
-                Donate <i class="fa-solid fa-heart"></i>
+                Donate <i className="fa-solid fa-heart"></i>
               </button>
             </div>
           </div>
         </div>
 
         {/* <!-- third  --> */}
-        <div class="col ">
-          <div class="card h-100 inner bg-info">
-            <img src={edu} class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Education</h5>
+        <div className="col ">
+          <div className="card h-100 inner bg-info">
+            <img src={edu} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title fw-bold">Education</h5>
               <p
-                class="card-text"
+                className="card-text"
                 style={{ overflow: "scroll", height: "150px" }}
               >
                 This is a wider card with supporting text below as a natural
@@ -306,65 +313,68 @@ const DonateCard = () => {
                 than the first to show that equal height action.
               </p>
             </div>
-            <div class="card-footer text-center">
+            <div className="card-footer text-center">
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-info" id="exampleModalLabel">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5
+                        className="modal-title text-info"
+                        id="exampleModalLabel"
+                      >
                         {" "}
                         Get Touch !
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <form>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="text"
                             placeholder="Full Name"
-                            class="form-control"
+                            className="form-control"
                             id="inputName"
                             aria-describedby="emailHelp"
                           />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="email"
                             placeholder="Enter Email"
-                            class="form-control"
+                            className="form-control"
                             id="inputEmail"
                             aria-describedby="emailHelp"
                           />
-                          <div id="emailHelp" class="form-text"></div>
+                          <div id="emailHelp" className="form-text"></div>
                         </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text">৳</span>
+                        <div className="input-group mb-3">
+                          <span className="input-group-text">৳</span>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Amount"
                             aria-label="Amount "
                           />
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         id="raffle-submit"
                         type="submit"
-                        class="btn btn-outline-info"
+                        className="btn btn-outline-info"
                         data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                       >
@@ -372,7 +382,7 @@ const DonateCard = () => {
                       </button>
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -383,29 +393,29 @@ const DonateCard = () => {
               </div>
 
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1"
+                tabIndex="-1"
               >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <h1> Thanks for your helping.!</h1>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -416,22 +426,22 @@ const DonateCard = () => {
               </div>
               <button
                 id=""
-                class="button-two"
+                className="button-two"
                 data-bs-toggle="modal"
                 href="#exampleModal"
               >
-                Donate <i class="fa-solid fa-heart"></i>
+                Donate <i className="fa-solid fa-heart"></i>
               </button>
             </div>
           </div>
         </div>
-        <div class="col ">
-          <div class="card h-100 inner bg-info">
-            <img src={disab} class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Disability</h5>
+        <div className="col ">
+          <div className="card h-100 inner bg-info">
+            <img src={disab} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title fw-bold">Disability</h5>
               <p
-                class="card-text"
+                className="card-text"
                 style={{ overflow: "scroll", height: "150px" }}
               >
                 This is a wider card with supporting text below as a natural
@@ -439,65 +449,68 @@ const DonateCard = () => {
                 than the first to show that equal height action.
               </p>
             </div>
-            <div class="card-footer text-center">
+            <div className="card-footer text-center">
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-info" id="exampleModalLabel">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5
+                        className="modal-title text-info"
+                        id="exampleModalLabel"
+                      >
                         {" "}
                         Get Touch !
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <form>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="text"
                             placeholder="Full Name"
-                            class="form-control"
+                            className="form-control"
                             id="inputName"
                             aria-describedby="emailHelp"
                           />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="email"
                             placeholder="Enter Email"
-                            class="form-control"
+                            className="form-control"
                             id="inputEmail"
                             aria-describedby="emailHelp"
                           />
-                          <div id="emailHelp" class="form-text"></div>
+                          <div id="emailHelp" className="form-text"></div>
                         </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text">৳</span>
+                        <div className="input-group mb-3">
+                          <span className="input-group-text">৳</span>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Amount"
                             aria-label="Amount "
                           />
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         id="raffle-submit"
                         type="submit"
-                        class="btn btn-outline-info"
+                        className="btn btn-outline-info"
                         data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                       >
@@ -505,7 +518,7 @@ const DonateCard = () => {
                       </button>
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -516,29 +529,29 @@ const DonateCard = () => {
               </div>
 
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1"
+                tabIndex="-1"
               >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <h1> Thanks for your helping.!</h1>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -549,11 +562,11 @@ const DonateCard = () => {
               </div>
               <button
                 id=""
-                class="button-two"
+                className="button-two"
                 data-bs-toggle="modal"
                 href="#exampleModal"
               >
-                Donate <i class="fa-solid fa-heart"></i>
+                Donate <i className="fa-solid fa-heart"></i>
               </button>
             </div>
           </div>
@@ -561,13 +574,13 @@ const DonateCard = () => {
 
         {/* <!-- fourth  --> */}
 
-        <div class="col ">
-          <div class="card h-100 inner bg-info">
-            <img src={winter} class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Winter Appearl</h5>
+        <div className="col ">
+          <div className="card h-100 inner bg-info">
+            <img src={winter} className="card-img-top" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title fw-bold">Winter Appearl</h5>
               <p
-                class="card-text"
+                className="card-text"
                 style={{ overflow: "scroll", height: "150px" }}
               >
                 This is a wider card with supporting text below as a natural
@@ -575,65 +588,68 @@ const DonateCard = () => {
                 than the first to show that equal height action.
               </p>
             </div>
-            <div class="card-footer text-center">
+            <div className="card-footer text-center">
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-info" id="exampleModalLabel">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5
+                        className="modal-title text-info"
+                        id="exampleModalLabel"
+                      >
                         {" "}
                         Get Touch !
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <form>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="text"
                             placeholder="Full Name"
-                            class="form-control"
+                            className="form-control"
                             id="inputName"
                             aria-describedby="emailHelp"
                           />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="email"
                             placeholder="Enter Email"
-                            class="form-control"
+                            className="form-control"
                             id="inputEmail"
                             aria-describedby="emailHelp"
                           />
-                          <div id="emailHelp" class="form-text"></div>
+                          <div id="emailHelp" className="form-text"></div>
                         </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text">৳</span>
+                        <div className="input-group mb-3">
+                          <span className="input-group-text">৳</span>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Amount"
                             aria-label="Amount "
                           />
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         id="raffle-submit"
                         type="submit"
-                        class="btn btn-outline-info"
+                        className="btn btn-outline-info"
                         data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                       >
@@ -641,7 +657,7 @@ const DonateCard = () => {
                       </button>
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -652,29 +668,29 @@ const DonateCard = () => {
               </div>
 
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1"
+                tabIndex="-1"
               >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <h1> Thanks for your helping.!</h1>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -685,23 +701,23 @@ const DonateCard = () => {
               </div>
               <button
                 id=""
-                class="button-two"
+                className="button-two"
                 data-bs-toggle="modal"
                 href="#exampleModal"
               >
-                Donate <i class="fa-solid fa-heart"></i>
+                Donate <i className="fa-solid fa-heart"></i>
               </button>
             </div>
           </div>
         </div>
 
-        <div class="col ">
-          <div class="card h-100 inner bg-secondary ">
-            <img src={sadaqah} class="card-img-top h-50" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title fw-bold">Tree Plantation</h5>
+        <div className="col ">
+          <div className="card h-100 inner bg-secondary ">
+            <img src={sadaqah} className="card-img-top h-50" alt="..." />
+            <div className="card-body">
+              <h5 className="card-title fw-bold">Tree Plantation</h5>
               <p
-                class="card-text"
+                className="card-text"
                 style={{ overflow: "scroll", height: "150px" }}
               >
                 This is a wider card with supporting text below as a natural
@@ -709,65 +725,68 @@ const DonateCard = () => {
                 than the first to show that equal height action.
               </p>
             </div>
-            <div class="card-footer text-center">
+            <div className="card-footer text-center">
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-info" id="exampleModalLabel">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5
+                        className="modal-title text-info"
+                        id="exampleModalLabel"
+                      >
                         {" "}
                         Get Touch !
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <form>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="text"
                             placeholder="Full Name"
-                            class="form-control"
+                            className="form-control"
                             id="inputName"
                             aria-describedby="emailHelp"
                           />
                         </div>
-                        <div class="mb-3">
+                        <div className="mb-3">
                           <input
                             type="email"
                             placeholder="Enter Email"
-                            class="form-control"
+                            className="form-control"
                             id="inputEmail"
                             aria-describedby="emailHelp"
                           />
-                          <div id="emailHelp" class="form-text"></div>
+                          <div id="emailHelp" className="form-text"></div>
                         </div>
-                        <div class="input-group mb-3">
-                          <span class="input-group-text">৳</span>
+                        <div className="input-group mb-3">
+                          <span className="input-group-text">৳</span>
                           <input
                             type="text"
-                            class="form-control"
+                            className="form-control"
                             placeholder="Amount"
                             aria-label="Amount "
                           />
                         </div>
                       </form>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         id="raffle-submit"
                         type="submit"
-                        class="btn btn-outline-info"
+                        className="btn btn-outline-info"
                         data-bs-target="#exampleModalToggle2"
                         data-bs-toggle="modal"
                       >
@@ -775,7 +794,7 @@ const DonateCard = () => {
                       </button>
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -786,29 +805,29 @@ const DonateCard = () => {
               </div>
 
               <div
-                class="modal fade"
+                className="modal fade"
                 id="exampleModalToggle2"
                 aria-hidden="true"
                 aria-labelledby="exampleModalToggleLabel2"
-                tabindex="-1"
+                tabIndex="-1"
               >
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <div className="modal-header">
                       <button
                         type="button"
-                        class="btn-close"
+                        className="btn-close"
                         data-bs-dismiss="modal"
                         aria-label="Close"
                       ></button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                       <h1> Thanks for your helping.!</h1>
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                       <button
                         type="button"
-                        class="btn btn-secondary"
+                        className="btn btn-secondary"
                         data-bs-dismiss="modal"
                       >
                         Close
@@ -819,11 +838,11 @@ const DonateCard = () => {
               </div>
               <button
                 id=""
-                class="button-two"
+                className="button-two"
                 data-bs-toggle="modal"
                 href="#exampleModal"
               >
-                Donate <i class="fa-solid fa-heart"></i>
+                Donate <i className="fa-solid fa-heart"></i>
               </button>
             </div>
           </div>

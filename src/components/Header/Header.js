@@ -24,7 +24,7 @@ const Header = () => {
             </div>
             <div className="col text-end">
               <p className="mb-0">
-                <Link to="/form/form" className="button">
+                <Link to="/signin" className="button">
                   Join Us <i className="fa-solid fa-heart"></i>
                 </Link>
               </p>
