@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import ricksaw from "./../../../assets/img/sabolombi.jpg";
 
 const Rickshaw = () => {
+  const [defaultAmount, setDefaultAmount] = useState(null);
   return (
     <div>
       <div></div>
@@ -29,43 +31,48 @@ const Rickshaw = () => {
               <h1>Make a Donation Now!</h1>
               <form>
                 <div className="donation-form ">
-                  <div className="fixed-amount mb-2 ">
-                    <button>
+                  <div className="fixed-amount mb-2 d-flex justify-content-between">
+                    <button onClick={() => setDefaultAmount(100)}>
                       <label className="amount-button">৳100</label>
                     </button>
-                    <button>
+                    <button onClick={() => setDefaultAmount(200)}>
                       <label className="amount-button">৳200</label>
                     </button>
-                    <button>
+                    <button onClick={() => setDefaultAmount(300)}>
                       <label className="amount-button select-amount-button">
                         ৳300
                       </label>
                     </button>
-                    <button>
+                    <button onClick={() => setDefaultAmount(400)}>
                       <label className="amount-button">৳400</label>
                     </button>
-                    <button>
+                    <button onClick={() => setDefaultAmount(500)}>
                       <label className="amount-button">৳500</label>
                     </button>
                   </div>
-                  <input
-                    type="number"
-                    name="Amount"
-                    placeholder="Enter other amount"
-                    className="w-100 other-amount"
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="w-100"
-                  />
+                  <form action="">
+                    <input
+                      type="number"
+                      name="Amount"
+                      placeholder="Enter other amount"
+                      className="w-100 other-amount"
+                      defaultValue={defaultAmount}
+                      required
+                    />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      className="w-100"
+                      required
+                    />
 
-                  <p className="donation-style-two">
-                    <a href="" className="button mt-3">
-                      Donate Now <i className="fa-solid fa-heart"></i>
-                    </a>
-                  </p>
+                    <p className="donation-style-two">
+                      <Link className="button mt-3" type="submit">
+                        Donate Now
+                      </Link>
+                    </p>
+                  </form>
                 </div>
               </form>
             </div>

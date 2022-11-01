@@ -33,11 +33,20 @@ const UserContext = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setCurrentUser(user);
-      setIsLoading(false);
+      if (user) {
+        setCurrentUser(user);
+        setIsLoading(false);
+      } else {
+        setCurrentUser(null);
+        setIsLoading(false);
+      }
     });
     return () => unsubscribe();
-  });
+  }, []);
+  const logOut = () => {
+    setIsLoading(true);
+    return signOut(auth);
+  };
   const authValue = {
     signInWithGoogle,
     signUpWithEmailAndPassword,
@@ -46,6 +55,7 @@ const UserContext = ({ children }) => {
     currentUser,
     isLoading,
     setIsLoading,
+    logOut,
   };
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>

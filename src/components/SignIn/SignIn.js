@@ -11,17 +11,22 @@ import {
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaGoogle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { signInWithGoogle, signInWithEmail } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
+  const { setIsLoading, signInWithGoogle, signInWithEmail } =
+    useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
   const [error, setError] = useState("");
   const handleSubmitForm = (e) => {
     e.preventDefault();
-    console.log(userInfo);
+    setIsLoading(true);
+    // console.log(userInfo);
     const { email, password } = userInfo;
     signInWithEmail(email, password)
       .then((userCredential) => {
@@ -29,7 +34,8 @@ const SignIn = () => {
         const user = userCredential.user;
         console.log(user);
         // ...
-        navigate("/");
+        // setIsLoading(false);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -46,12 +52,15 @@ const SignIn = () => {
     // console.log(userInfo);
   };
   const handleGoogleSignIn = () => {
+    setIsLoading(true);
     signInWithGoogle()
       .then((result) => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
         // ...
+        // setIsLoading(false);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         // Handle Errors here.

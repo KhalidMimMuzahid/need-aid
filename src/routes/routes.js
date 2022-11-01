@@ -23,6 +23,14 @@ import TopDonor from "../components/ViewOur/TopDonor/TopDonor";
 import TotalFund from "../components/ViewOur//TotalFund/TotalFund";
 import SignIn from "../components/SignIn/SignIn";
 import SignUp from "../components/SignUp/SignUp";
+import Profile from "../components/Profile/Profile";
+import Special from "../components/Special/Special";
+import RaffleDraw from "../components/Special/RaffleDraw/RaffleDraw";
+import TShirtAdopt from "../components/Special/TShirtAdopt/TShirtAdopt";
+import GiftCard from "../components/Special/GiftCard/GiftCard";
+import PrivetRoutes from "./PrivetRoutes";
+import RickshawMainPage from "../components/RickshawMainPage/RickshawMainPage";
+import RaffleMainPage from "../components/RaffleMainPage/RaffleMainPage";
 
 export const routes = createBrowserRouter([
   {
@@ -47,6 +55,18 @@ export const routes = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/profile/:user",
+        element: <Profile />,
+      },
+      {
+        path: "/rickshaw",
+        element: <RickshawMainPage />,
+      },
+      {
+        path: "/raffle",
+        element: <RaffleMainPage />,
+      },
+      {
         path: "/viewour",
         element: <ViewOur />,
         children: [
@@ -61,6 +81,28 @@ export const routes = createBrowserRouter([
           {
             path: "/viewour/total-fund",
             element: <TotalFund />,
+          },
+        ],
+      },
+      {
+        path: "/special",
+        element: <Special />,
+        children: [
+          {
+            path: "/special/raffle",
+            element: (
+              <PrivetRoutes>
+                <RaffleDraw />
+              </PrivetRoutes>
+            ),
+          },
+          {
+            path: "/special/tshirtadopt",
+            element: <TShirtAdopt />,
+          },
+          {
+            path: "/special/giftcard",
+            element: <GiftCard />,
           },
         ],
       },

@@ -25,8 +25,9 @@ const SignUp = () => {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     console.log(userInfo);
-    const { displayName, email, password } = userInfo;
-    const userAdditionalInfo = { displayName };
+    const { displayName, email, password, photoURL } = userInfo;
+    const userAdditionalInfo = { displayName, photoURL };
+    console.log(userAdditionalInfo);
     signUpWithEmailAndPassword(email, password)
       .then((userCredential) => {
         updateUserProfile(userAdditionalInfo);
@@ -133,6 +134,16 @@ const SignUp = () => {
                     placeholder="Email address"
                     id="formControlLg"
                     type="email"
+                    size="lg"
+                    required
+                  />
+                  <MDBInput
+                    onChange={handleinputChange}
+                    name="photoURL"
+                    className="mb-4 mx-auto w-100"
+                    placeholder="Profile photo URL"
+                    id="formControlLg"
+                    type="text"
                     size="lg"
                     required
                   />

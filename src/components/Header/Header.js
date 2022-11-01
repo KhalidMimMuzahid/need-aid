@@ -1,14 +1,23 @@
 import React, { useContext } from "react";
-import { FaMailBulk, FaPhoneAlt } from "react-icons/fa";
+import { FaMailBulk, FaPhoneAlt, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const Header = () => {
-  const { currentUser } = useContext(AuthContext);
-  const { displayName, uid } = currentUser;
+  const { currentUser, logOut } = useContext(AuthContext);
   console.log(currentUser);
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+      });
+  };
   return (
-    <div className="sticky-top header-sticky bg-info">
+    <div className="sticky-top header-sticky ">
       <section className="py-1">
         <div className="container-fluid">
           <div className="row">
@@ -26,19 +35,32 @@ const Header = () => {
                 </div>
               </div>
             </div>
-            {uid ? (
-              <div>
-                <h1>{displayName}</h1>
-              </div>
-            ) : (
-              <div className="col text-end">
+
+            <div className="col text-end">
+              {currentUser?.uid ? (
+                <div className="d-flex justify-content-end">
+                  <Link
+                    to={`profile/${currentUser.displayName}`}
+                    className="d-flex me-2"
+                  >
+                    <img
+                      className="userProfilePhoto "
+                      src={currentUser.photoURL}
+                      alt=""
+                    />
+                  </Link>
+                  <button onClick={handleLogOut} className="button">
+                    Sign Out <FaSignOutAlt />{" "}
+                  </button>
+                </div>
+              ) : (
                 <p className="mb-0">
                   <Link to="/signin" className="button">
                     Join Us <i className="fa-solid fa-heart"></i>
                   </Link>
                 </p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </section>
@@ -199,7 +221,11 @@ const Header = () => {
                       </Link>
                       <ul className="dropdown-menu submenu">
                         <li>
-                          <Link className="dropdown-item" to="/fund/rickshaw">
+                          <Link
+                            to="/rickshaw"
+                            className="dropdown-item"
+                            to="/fund/rickshaw"
+                          >
                             1000 Takai Rikshaw
                           </Link>
                         </li>
@@ -257,17 +283,17 @@ const Header = () => {
                   </Link>
                   <ul className="dropdown-menu">
                     <li>
-                      <Link className="dropdown-item" to="raffle/raffle">
+                      <Link className="dropdown-item" to="/special/raffle">
                         Raflle Draw
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="#">
+                      <Link className="dropdown-item" to="/special/giftcard">
                         Gift Card
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="#">
+                      <Link className="dropdown-item" to="/special/tshirtadopt">
                         T-shirt Adopt
                       </Link>
                     </li>
@@ -281,7 +307,7 @@ const Header = () => {
               </ul>
 
               <p className="donation-style-two">
-                <Link to="#rickshaw" className="button mt-3 ms-1">
+                <Link to="rickshaw" className="button mt-3 ms-1">
                   1000 Takai{" "}
                   <img
                     src="/img/cycle-rickshaw.png"
@@ -291,7 +317,7 @@ const Header = () => {
                 </Link>
               </p>
               <p className="donation-style-two">
-                <Link to="/raffle/raffle" className="button mt-3 ms-1">
+                <Link to="/raffle" className="button mt-3 ms-1">
                   Raffle Draw <i className="fa-solid fa-trophy"></i>
                 </Link>
               </p>
