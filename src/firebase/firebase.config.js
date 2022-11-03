@@ -4,13 +4,21 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_apiKey,
+//   authDomain: process.env.REACT_APP_authDomain,
+//   projectId: process.env.REACT_APP_projectId,
+//   storageBucket: process.env.REACT_APP_storageBucket,
+//   messagingSenderId: process.env.REACT_APP_messagingSenderId,
+//   appId: process.env.REACT_APP_appId,
+// };
 const firebaseConfig = {
-  apiKey: "AIzaSyDR1EXAF82oULzDh0rDm-zCxWtKy2Zj3ss",
-  authDomain: "need-aid.firebaseapp.com",
-  projectId: "need-aid",
-  storageBucket: "need-aid.appspot.com",
-  messagingSenderId: "593817790658",
-  appId: "1:593817790658:web:b7984ef71a788582c0f35b",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase

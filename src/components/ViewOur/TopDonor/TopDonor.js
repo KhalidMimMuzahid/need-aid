@@ -1,45 +1,89 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router-dom";
 import "./TopDonor.css";
-
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import EachDonor from "./EachDonor";
 const TopDonor = () => {
+  const topDonors = useLoaderData();
+  // const [giftCard, setGiftCard] = useState({});
+  // const [topDonors, setTopDonors] = useState({});
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/topdonorlist")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setTopDonors(data);
+  //       console.log(data);
+  //     });
+  // }, []);
+  // const handleInputOnchange = (e) => {
+  //   console.log(e.target.value);
+  //   const field = e.target.name;
+  //   const value = e.target.value;
+  //   const giftCardInfo = { ...giftCard };
+  //   giftCardInfo[field] = value;
+  //   setGiftCard(giftCardInfo);
+  //   console.log(giftCard);
+  // };
+  // const handleGiftCard = (e) => {
+  //   e.preventDefault();
+  //   console.log(giftCard);
+  //   if (giftCard.cardHeading && giftCard.cardBody) {
+  //     console.log("all okk");
+  //   } else {
+  //     console.log("some field is empty");
+  //   }
+  // };
   return (
-    <div>
-      <div className="container my-4 bg py-2">
-        <div className="row">
-          <div className="col-md-6 offset-md-3 bg-info py-3  rounded-2">
-            <h1 className="text-center mb-3"> Top 5 Donar List</h1>
-            <ul className="timeline-3">
-              <li className="bg-white rounded-2">
-                <h4> 1. Rank</h4>
+    <section class="vh-100 gradient-custom-2">
+      <div class="container py-3 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-md-12 col-xl-10">
+            <div class="card mask-custom">
+              <div class="card-body p-2 text-white">
+                <div class="text-center pt-3 pb-2">
+                  <h2 class="my-4">Top Donor List {topDonors?.length}</h2>
+                </div>
 
-                <h3> Name 1 </h3>
-              </li>
-              <li className="bg-white rounded-2 py-0">
-                <h4> 2. Rank</h4>
-
-                <h3> Name 2</h3>
-              </li>
-              <li className="bg-white rounded-2">
-                <h4> 3. Rank</h4>
-
-                <h3> Name 3</h3>
-              </li>
-              <li className="bg-white rounded-2">
-                <h4> 4. Rank</h4>
-
-                <h3> Name 4</h3>
-              </li>
-              <li className="bg-white rounded-2">
-                <h4> 5. Rank</h4>
-
-                <h3> Name 5</h3>
-              </li>
-            </ul>
+                <table class="table text-white mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Donor Name</th>
+                      {/* <th scope="col">Email</th> */}
+                      <th scope="col">Donated Amount</th>
+                      <th scope="col">Gift A Card</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {topDonors.length === 0 ||
+                      topDonors.map((donor) => (
+                        <EachDonor
+                          key={donor.userUid}
+                          donor={donor}
+                          star={topDonors.indexOf(donor)}
+                        ></EachDonor>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 export default TopDonor;
+
+// key={donor.userUid}
+// show={show}
+// handleShow={handleShow}
+// handleClose={handleClose}
+// donor={donor}
+// handleInputOnchange={handleInputOnchange}
+// handleGiftCard={handleGiftCard}

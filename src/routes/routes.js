@@ -55,7 +55,7 @@ export const routes = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/profile/:user",
+        path: "/profile",
         element: <Profile />,
       },
       {
@@ -76,6 +76,7 @@ export const routes = createBrowserRouter([
           },
           {
             path: "/viewour/top-donor",
+            loader: async () => fetch("http://localhost:5000/topdonorlist"),
             element: <TopDonor />,
           },
           {

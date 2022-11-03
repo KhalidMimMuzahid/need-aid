@@ -39,10 +39,7 @@ const Header = () => {
             <div className="col text-end">
               {currentUser?.uid ? (
                 <div className="d-flex justify-content-end">
-                  <Link
-                    to={`profile/${currentUser.displayName}`}
-                    className="d-flex me-2"
-                  >
+                  <Link to="/profile" className="d-flex me-2">
                     <img
                       className="userProfilePhoto "
                       src={currentUser.photoURL}

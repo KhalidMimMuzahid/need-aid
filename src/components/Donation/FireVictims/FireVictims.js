@@ -1,16 +1,55 @@
-import React from "react";
+import React, { useContext } from "react";
 import img from "./../../../assets/img/fire.jpg";
+import { AuthContext } from "../../../context/UserContext";
+const FireVictims = () => {
+  const { currentUser } = useContext(AuthContext);
 
-const FloodRelief = () => {
   const handleFormCOntrol = (e) => {
     e.preventDefault();
+    // console.log(currentUser.uid);
+    const userUid = currentUser?.uid;
+    const userPhoto = currentUser?.photoURL;
     console.log("clicked");
     const fund = e.target;
     const name = fund.inputName.value;
     const email = fund.inputEmail.value;
     const amount = fund.inputAmount.value;
-    console.log(name, email, amount);
+    const fundCategory = "emergencyFund";
+    const fundType = "fireVictims";
+    const donor = { userUid, userPhoto, name, email, amount };
+    const fundData = {
+      fundCategory,
+      fundType,
+      amount,
+      donor,
+    };
+    if (name && email && amount) {
+      fetch("http://localhost:5000/fundsupdate", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fundData),
+      })
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+      // top donor list value send here
+      // const donor = { userUid, name, email, amount };
+      // fetch("http://localhost:5000/donorlist", {
+      //   method: "PUT",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(donor),
+      // })
+      //   .then((res) => res.json())
+      //   .then((data) => console.log(data));
+      // top donor list value send ending here
+    } else {
+      console.log("error");
+    }
   };
+
   return (
     <div>
       <section>
@@ -45,6 +84,7 @@ const FloodRelief = () => {
                   <form onSubmit={handleFormCOntrol}>
                     <div className="mb-3">
                       <input
+                        defaultValue={currentUser?.displayName}
                         type="text"
                         placeholder="Full Name"
                         className="form-control"
@@ -54,6 +94,7 @@ const FloodRelief = () => {
                     </div>
                     <div className="mb-3">
                       <input
+                        defaultValue={currentUser?.email}
                         type="email"
                         placeholder="Enter Email"
                         className="form-control"
@@ -135,4 +176,4 @@ const FloodRelief = () => {
   );
 };
 
-export default FloodRelief;
+export default FireVictims;
