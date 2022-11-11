@@ -1,9 +1,10 @@
 import React from "react";
+import DonateCard from "../../Home/HomeMain/DonateCard";
 
 const PopulerWork = () => {
   return (
     <div>
-      <h1>PopulerWork</h1>
+      <DonateCard />
     </div>
   );
 };

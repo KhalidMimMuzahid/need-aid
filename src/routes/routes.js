@@ -31,6 +31,13 @@ import GiftCard from "../components/Special/GiftCard/GiftCard";
 import PrivetRoutes from "./PrivetRoutes";
 import RickshawMainPage from "../components/RickshawMainPage/RickshawMainPage";
 import RaffleMainPage from "../components/RaffleMainPage/RaffleMainPage";
+import HomeMainBelow from "../components/Home/HomeMainBelow";
+import HomeMainUp from "../components/Home/HomeMainUp";
+import Contact from "../components/Home/HomeMain/Contact";
+import Gallary from "../components/Home/HomeMain/Gallary";
+import ManageAdv from "../components/AdminManager/ManageAdv";
+import ManageRaffle from "../components/AdminManager/ManageRaffle";
+import RaffleResult from "../components/Special/RaffleDraw/RaffleResult";
 
 export const routes = createBrowserRouter([
   {
@@ -47,6 +54,22 @@ export const routes = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/about",
+        element: <HomeMainUp />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/populer-work",
+        element: <PopulerWork />,
+      },
+      {
+        path: "/gallery",
+        element: <Gallary />,
+      },
+      {
         path: "/signin",
         element: <SignIn />,
       },
@@ -55,8 +78,34 @@ export const routes = createBrowserRouter([
         element: <SignUp />,
       },
       {
+        path: "/giftCard/:id",
+        loader: async ({ params }) =>
+          fetch(`http://localhost:5000/giftcard/${params.id}`),
+        element: <GiftCard />,
+      },
+      {
+        path: "/manageraffle",
+        element: (
+          <PrivetRoutes>
+            <ManageRaffle />
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: "/manageadvertisement",
+        element: (
+          <PrivetRoutes>
+            <ManageAdv />
+          </PrivetRoutes>
+        ),
+      },
+      {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <PrivetRoutes>
+            <Profile />
+          </PrivetRoutes>
+        ),
       },
       {
         path: "/rickshaw",
@@ -64,20 +113,28 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/raffle",
-        element: <RaffleMainPage />,
+        element: (
+          <PrivetRoutes>
+            <RaffleMainPage />
+          </PrivetRoutes>
+        ),
+      },
+      {
+        path: "/special/raffleresult",
+        element: <RaffleResult />,
       },
       {
         path: "/viewour",
         element: <ViewOur />,
         children: [
           {
-            path: "/viewour/populer-work",
-            element: <PopulerWork />,
-          },
-          {
             path: "/viewour/top-donor",
             loader: async () => fetch("http://localhost:5000/topdonorlist"),
-            element: <TopDonor />,
+            element: (
+              <PrivetRoutes>
+                <TopDonor />
+              </PrivetRoutes>
+            ),
           },
           {
             path: "/viewour/total-fund",
@@ -102,7 +159,9 @@ export const routes = createBrowserRouter([
             element: <TShirtAdopt />,
           },
           {
-            path: "/special/giftcard",
+            path: "/special/giftcard/:id",
+            loader: async ({ params }) =>
+              fetch(`http://localhost:5000/giftcards/${params.id}`),
             element: <GiftCard />,
           },
         ],

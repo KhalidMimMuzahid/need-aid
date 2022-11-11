@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import about from "../../assets/img/about.jpg";
+import { AuthContext } from "../../context/UserContext";
 
 const HomeMainUp = () => {
+  const { isDark } = useContext(AuthContext);
   return (
-    <div className="">
+    <div className={`${isDark && "text-white"}`}>
       <section className="mt-5">
         <div>
           <h1 className="shadow-underline2  text-center font-bold mb-4">
             {" "}
-            About<span className="text-warning">Us</span>
+            About <span className="text-warning">Us</span>
           </h1>
         </div>
         <div className="row">
@@ -31,7 +33,7 @@ const HomeMainUp = () => {
             <h4 className="mb-4">
               <strong>Need Aid | a Donation Service </strong>
             </h4>
-            <p className="text-muted">
+            <p className="">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis
               consequatur eligendi quisquam doloremque vero ex debitis veritatis
               placeat unde animi laborum sapiente illo possimus, commodi
@@ -40,7 +42,7 @@ const HomeMainUp = () => {
             <p>
               <strong>Doloremque vero ex debitis veritatis?</strong>
             </p>
-            <p className="text-muted">
+            <p className="">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
               itaque voluptate nesciunt laborum incidunt. Officia, quam
               consectetur. Earum eligendi aliquam illum alias, unde optio
@@ -49,7 +51,7 @@ const HomeMainUp = () => {
             <p>
               <strong>Doloremque vero ex debitis veritatis?</strong>
             </p>
-            <p className="text-muted">
+            <p className="">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
               itaque voluptate nesciunt laborum incidunt. Officia, quam
               consectetur. Earum eligendi aliquam illum alias, unde optio

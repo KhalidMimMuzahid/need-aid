@@ -3,10 +3,11 @@ import React, { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { FaGift, FaStar } from "react-icons/fa";
 import { Form, Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../../context/UserContext";
 
 const EachDonor = ({ donor, star }) => {
-  console.log(star);
+  // console.log(star);
   let newStar;
   let loopStar = [];
   if (star === 0) {
@@ -35,10 +36,10 @@ const EachDonor = ({ donor, star }) => {
       loopStar.push(i);
     }
   }
-  console.log(loopStar);
+  // console.log(loopStar);
   const { currentUser } = useContext(AuthContext);
-  //   console.log(currentUser);
-  //   console.log(donor);
+  // console.log("currentUser: ", currentUser);
+  // console.log("donor: ", donor);
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -63,10 +64,26 @@ const EachDonor = ({ donor, star }) => {
     setShow(true);
     console.log(giftCard);
     if (giftCard.cardBody) {
-      giftCard.toDonor = donor.userUid;
-      giftCard.fromDonor = currentUser.uid;
+      giftCard.toDonorUid = donor.userUid;
+      // giftCard.fromDonorUserUid = currentUser.uid;
+      giftCard.fromDonorName = currentUser.displayName;
+      giftCard.fromDonorEmail = currentUser.email;
+      giftCard.fromDonorUserPhoto = currentUser.photoURL;
       console.log("all okk", giftCard);
       handleClose();
+      fetch("http://localhost:5000/sendgiftcard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Barerer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify(giftCard),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("is sent", data);
+          toast.success("card sent successfully");
+        });
       setGiftCard({});
     } else {
       console.log("some field is empty");
@@ -82,16 +99,15 @@ const EachDonor = ({ donor, star }) => {
           alt="avatar 1"
           style={{ width: "45px", height: "45px", borderRadius: "50%" }}
         />
-        <span className="ms-2">
-          {donor.name} &nbsp;&nbsp;
+        <span className="ms-2">{donor.name}</span>
+      </th>
+      <td className="align-middle">
+        <span className=" ">
           {loopStar.map((star) => (
             <FaStar style={{ color: "#ffe735", fontSize: "20px" }}></FaStar>
           ))}
         </span>
-      </th>
-      {/* <td className="align-middle">
-        <span>khalidmimm@gmail.com</span>
-      </td> */}
+      </td>
       <td className="align-middle">
         <h6 className="mb-0">
           <span className="badge bg-secondary fs-6">{donor.amount}৳</span>

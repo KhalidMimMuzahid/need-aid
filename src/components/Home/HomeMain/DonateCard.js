@@ -5,11 +5,18 @@ import edu from "./../../../assets/img/chid-edu.jpg";
 import disab from "./../../../assets/img/disablity.jpg";
 import winter from "./../../../assets/img/winter.jpg";
 import sadaqah from "./../../../assets/img/sadaqah.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../../../context/UserContext";
 
 const DonateCard = () => {
+  const { isDark } = useContext(AuthContext);
   return (
     <section className="container mt-5">
-      <h1 className=" shadow-underline text-center fw-bold mb-5 mt-5 ">
+      <h1
+        className={`shadow-underline text-center fw-bold mb-5 mt-5 ${
+          isDark && "text-white"
+        }`}
+      >
         Together Let’s Make a{" "}
         <span className="text-warning mt-5">Change .!</span>
       </h1>
@@ -712,7 +719,7 @@ const DonateCard = () => {
         </div>
 
         <div className="col ">
-          <div className="card h-100 inner bg-secondary ">
+          <div className="card h-100 inner bg-info ">
             <img src={sadaqah} className="card-img-top h-50" alt="..." />
             <div className="card-body">
               <h5 className="card-title fw-bold">Tree Plantation</h5>

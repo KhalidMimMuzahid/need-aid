@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import EachGiftCard from "./EachGiftCard";
 
 const GiftCard = () => {
+  const giftCards = useLoaderData();
+  console.log("cards", giftCards);
+
   return (
     <div>
-      <h1>GiftCard</h1>
+      {giftCards.map((giftCard) => (
+        <EachGiftCard key={giftCard._id} giftCard={giftCard}></EachGiftCard>
+      ))}
     </div>
   );
 };

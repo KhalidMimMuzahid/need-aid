@@ -11,30 +11,55 @@ import {
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaGoogle } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
-  const { setIsLoading, signInWithGoogle, signInWithEmail } =
-    useContext(AuthContext);
+  console.log("in signin from", from);
+  const {
+    setIsLoading,
+    signInWithGoogle,
+    signInWithEmail,
+    logOut,
+    setIsUserAdmin,
+  } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
   const [error, setError] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setIsLoading(true);
     // console.log(userInfo);
     const { email, password } = userInfo;
+    // if (!userInfo?.isAdmin) {
+    //   console.log("this is not admin");
+    // } else {
+    //   console.log("this is admin");
+    // }
     signInWithEmail(email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
-        // ...
-        // setIsLoading(false);
+        const currentUser = {
+          userUid: user.uid,
+        };
+        console.log(currentUser);
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+          });
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -45,30 +70,95 @@ const SignIn = () => {
   };
   const handleinputChange = (e) => {
     const field = e.target.name;
-    const value = e.target.value;
+    // const value = e.target.value;
     const newUser = { ...userInfo };
-    newUser[field] = value;
+    if (field === "isAdmin") {
+      const value = !isAdmin;
+      setIsAdmin(value);
+      newUser[field] = value;
+    } else {
+      const value = e.target.value;
+      newUser[field] = value;
+    }
+
     setUserInfo(newUser);
-    // console.log(userInfo);
+    console.log(userInfo);
   };
+  //  const handleAdminChange = (e) => {
+  //   const field = e.target.name
+  //   value = setIsAdmin(!isAdmin)
+  //  }
+
   const handleGoogleSignIn = () => {
     setIsLoading(true);
+    console.log("isadmin", isAdmin);
+    const { email, password } = userInfo;
+    // if (!userInfo?.isAdmin) {
+    //   console.log("this is not admin");
+    // } else {
+    //   console.log("this is admin");
+    // }
     signInWithGoogle()
       .then((result) => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
-        // ...
-        // setIsLoading(false);
-        navigate(from, { replace: true });
+        const currentUser = {
+          userUid: user.uid,
+        };
+
+        console.log("this is admin", userInfo?.isAdmin);
+        if (!userInfo?.isAdmin) {
+          console.log("this is not admin");
+          fetch("http://localhost:5000/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              localStorage.setItem("token", data.token);
+            });
+          // ...
+          // setIsLoading(false);
+          navigate(from, { replace: true });
+        } else {
+          console.log("this is admin");
+          fetch("http://localhost:5000/isadmin", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => {
+              if (res.status === 401) {
+                return logOut();
+              }
+              return res.json();
+            })
+            .then((data) => {
+              console.log(data);
+              localStorage.setItem("admin-token", data.token);
+              setIsUserAdmin(true);
+            });
+          // ...
+          // setIsLoading(false);
+          navigate(from, { replace: true });
+        }
       })
       .catch((error) => {
         // Handle Errors here.
         const errorMessage = error.message;
-        console.log(errorMessage);
+        // console.log(errorMessage);
+        setError(errorMessage);
         // ...
       });
   };
+
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -109,6 +199,29 @@ const SignIn = () => {
                     size="lg"
                     required
                   />
+                  {/* 
+                  <MDBInput
+                    onChange={handleinputChange}
+                    name="password"
+                    className="mb-4 mx-auto w-100"
+                    placeholder="Password"
+                    id="formControlLg"
+                    type="password"
+                    size="lg"
+                    required
+                  /> */}
+
+                  <label htmlFor="subscribe">
+                    <input
+                      onChange={handleinputChange}
+                      value={isAdmin}
+                      type="checkbox"
+                      name="isAdmin"
+                      id="subscribe"
+                    />
+                    isAdmin
+                  </label>
+
                   {error && <p className="text-danger">{error}</p>}
                   <p className="small mb-2 pb-lg-2">
                     <a className="text-white-50" href="#!">

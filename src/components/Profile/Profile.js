@@ -2,15 +2,48 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/UserContext";
 
 const Profile = () => {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, logOut, isUserAdmin } = useContext(AuthContext);
+  console.log(currentUser);
   const [totalDonation, setTotalDonation] = useState("loading...");
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/currentuserdonation?userUid=${currentUser.uid}`
-    )
-      .then((res) => res.json())
-      .then((data) => setTotalDonation(data.amount));
-  }, []);
+    console.log("is Admin user", isUserAdmin);
+    if (!isUserAdmin) {
+      fetch(
+        `http://localhost:5000/currentuserprofile?userUid=${currentUser.uid}`,
+        {
+          headers: {
+            authorization: `Barerer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+        .then((res) => {
+          // console.log(res);
+          if (res.satus === 401 || res.status === 403) {
+            return logOut();
+          }
+          return res.json();
+        })
+        .then((data) => setTotalDonation(data.amount));
+    } else {
+      fetch(
+        `http://localhost:5000/currentuserprofile?userUid=${currentUser.uid}`,
+        {
+          headers: {
+            authorization: `Barerer ${localStorage.getItem("admin-token")}`,
+            actor: "Admin",
+          },
+        }
+      )
+        .then((res) => {
+          // console.log(res);
+          if (res.satus === 401 || res.status === 403) {
+            return logOut();
+          }
+          return res.json();
+        })
+        .then((data) => setTotalDonation(data.amount));
+    }
+  }, [currentUser?.uid]);
   return (
     <div>
       <section className="vh-100" style={{ backgroundColor: "#9de2ff" }}>
@@ -32,7 +65,9 @@ const Profile = () => {
                       className="flex-grow-1 ms-3 p-2"
                       style={{ backgroundColor: "#efefef" }}
                     >
-                      <h5 className="mb-1">{currentUser.displayName}</h5>
+                      <h5 className="mb-1">
+                        {currentUser.displayName} {isUserAdmin && "(Admin)"}
+                      </h5>
                       <p className="mb-2 pb-1" style={{ color: "#2b2a2a" }}>
                         {currentUser.email}
                       </p>

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   MDBBtn,
   MDBCard,
@@ -15,6 +16,8 @@ import { Button } from "react-bootstrap";
 import { AuthContext } from "../../context/UserContext";
 const SignUp = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const {
     signInWithGoogle,
     signUpWithEmailAndPassword,
@@ -35,8 +38,23 @@ const SignUp = () => {
         const user = userCredential.user;
         // console.log(user);
         // setIsLoading(false);
-
-        navigate("/");
+        const currentUser = {
+          userUid: user.uid,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+          });
+        // ...
+        navigate(from, { replace: true });
         window.location.reload();
       })
       .catch((error) => {
@@ -76,7 +94,23 @@ const SignUp = () => {
         // The signed-in user info.
         const user = result.user;
         console.log(user);
+        const currentUser = {
+          userUid: user.uid,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+          });
         // ...
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         // Handle Errors here.

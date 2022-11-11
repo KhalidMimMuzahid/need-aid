@@ -19,6 +19,8 @@ const UserContext = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isUserAdmin, setIsUserAdmin] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const signInWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
@@ -33,6 +35,7 @@ const UserContext = ({ children }) => {
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsUserAdmin(false);
       if (user) {
         setCurrentUser(user);
         setIsLoading(false);
@@ -45,9 +48,14 @@ const UserContext = ({ children }) => {
   }, []);
   const logOut = () => {
     setIsLoading(true);
+    localStorage.removeItem("token");
+    localStorage.removeItem("admin-token");
+    setIsUserAdmin(true);
     return signOut(auth);
   };
   const authValue = {
+    isDark,
+    setIsDark,
     signInWithGoogle,
     signUpWithEmailAndPassword,
     updateUserProfileInfo,
@@ -56,6 +64,8 @@ const UserContext = ({ children }) => {
     isLoading,
     setIsLoading,
     logOut,
+    isUserAdmin,
+    setIsUserAdmin,
   };
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>
