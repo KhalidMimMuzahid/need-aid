@@ -7,7 +7,7 @@ const RaffleResult = () => {
   //   const { currentUser, logOut, isUserAdmin } = useContext(AuthContext);
   const [winnerList, SetWinnerList] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/raffleresult")
+    fetch("https://need-aid.vercel.app/raffleresult")
       .then((res) => res.json())
       .then((data) => {
         SetWinnerList(data);

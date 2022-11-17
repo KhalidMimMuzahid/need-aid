@@ -38,6 +38,7 @@ import Gallary from "../components/Home/HomeMain/Gallary";
 import ManageAdv from "../components/AdminManager/ManageAdv";
 import ManageRaffle from "../components/AdminManager/ManageRaffle";
 import RaffleResult from "../components/Special/RaffleDraw/RaffleResult";
+import Sponsorship from "../components/Sponsorship/Sponsorship";
 
 export const routes = createBrowserRouter([
   {
@@ -80,7 +81,7 @@ export const routes = createBrowserRouter([
       {
         path: "/giftCard/:id",
         loader: async ({ params }) =>
-          fetch(`http://localhost:5000/giftcard/${params.id}`),
+          fetch(`https://need-aid.vercel.app/giftcard/${params.id}`),
         element: <GiftCard />,
       },
       {
@@ -124,12 +125,17 @@ export const routes = createBrowserRouter([
         element: <RaffleResult />,
       },
       {
+        path: "/sponsership",
+        element: <Sponsorship />,
+      },
+      {
         path: "/viewour",
         element: <ViewOur />,
         children: [
           {
             path: "/viewour/top-donor",
-            loader: async () => fetch("http://localhost:5000/topdonorlist"),
+            loader: async () =>
+              fetch("https://need-aid.vercel.app/topdonorlist"),
             element: (
               <PrivetRoutes>
                 <TopDonor />
@@ -161,8 +167,12 @@ export const routes = createBrowserRouter([
           {
             path: "/special/giftcard/:id",
             loader: async ({ params }) =>
-              fetch(`http://localhost:5000/giftcards/${params.id}`),
-            element: <GiftCard />,
+              fetch(`https://need-aid.vercel.app/giftcards/${params.id}`),
+            element: (
+              <PrivetRoutes>
+                <GiftCard />
+              </PrivetRoutes>
+            ),
           },
         ],
       },

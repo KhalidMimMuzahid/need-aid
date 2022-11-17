@@ -24,7 +24,7 @@ const FireVictims = () => {
       donor,
     };
     if (name && email && amount) {
-      fetch("http://localhost:5000/fundsupdate", {
+      fetch("https://need-aid.vercel.app/fundsupdate", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const FireVictims = () => {
         .then((data) => console.log(data));
       // top donor list value send here
       // const donor = { userUid, name, email, amount };
-      // fetch("http://localhost:5000/donorlist", {
+      // fetch("https://need-aid.vercel.app/donorlist", {
       //   method: "PUT",
       //   headers: {
       //     "Content-Type": "application/json",

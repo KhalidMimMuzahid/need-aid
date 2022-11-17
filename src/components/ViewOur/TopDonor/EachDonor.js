@@ -37,7 +37,7 @@ const EachDonor = ({ donor, star }) => {
     }
   }
   // console.log(loopStar);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, isUserAdmin } = useContext(AuthContext);
   // console.log("currentUser: ", currentUser);
   // console.log("donor: ", donor);
   const [show, setShow] = useState(false);
@@ -71,7 +71,7 @@ const EachDonor = ({ donor, star }) => {
       giftCard.fromDonorUserPhoto = currentUser.photoURL;
       console.log("all okk", giftCard);
       handleClose();
-      fetch("http://localhost:5000/sendgiftcard", {
+      fetch("https://need-aid.vercel.app/sendgiftcard", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -115,6 +115,7 @@ const EachDonor = ({ donor, star }) => {
       </td>
       <td className="align-middle">
         <Button
+          disabled={isUserAdmin}
           onClick={handleShow}
           className="button"
           style={{

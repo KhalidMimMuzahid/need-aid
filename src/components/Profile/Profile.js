@@ -9,7 +9,7 @@ const Profile = () => {
     console.log("is Admin user", isUserAdmin);
     if (!isUserAdmin) {
       fetch(
-        `http://localhost:5000/currentuserprofile?userUid=${currentUser.uid}`,
+        `https://need-aid.vercel.app/currentuserprofile?userUid=${currentUser.uid}`,
         {
           headers: {
             authorization: `Barerer ${localStorage.getItem("token")}`,
@@ -26,7 +26,7 @@ const Profile = () => {
         .then((data) => setTotalDonation(data.amount));
     } else {
       fetch(
-        `http://localhost:5000/currentuserprofile?userUid=${currentUser.uid}`,
+        `https://need-aid.vercel.app/currentuserprofile?userUid=${currentUser.uid}`,
         {
           headers: {
             authorization: `Barerer ${localStorage.getItem("admin-token")}`,

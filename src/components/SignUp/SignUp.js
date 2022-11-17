@@ -22,11 +22,15 @@ const SignUp = () => {
     signInWithGoogle,
     signUpWithEmailAndPassword,
     updateUserProfileInfo,
+    verifyEmail,
+    setIsLoading,
   } = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
+  const [signUpError, setSignUpError] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    setSignUpError("");
     console.log(userInfo);
     const { displayName, email, password, photoURL } = userInfo;
     const userAdditionalInfo = { displayName, photoURL };
@@ -41,7 +45,7 @@ const SignUp = () => {
         const currentUser = {
           userUid: user.uid,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://need-aid.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -54,12 +58,18 @@ const SignUp = () => {
             localStorage.setItem("token", data.token);
           });
         // ...
-        navigate(from, { replace: true });
-        window.location.reload();
+        verifyEmail().then(() => {
+          toast.error("please verify your email and login again");
+          e.target.reset();
+          setIsLoading(false);
+        });
+        // navigate(from, { replace: true });
+        // window.location.reload();
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        setSignUpError(errorMessage);
+        e.target.reset();
       });
   };
   const handleinputChange = (e) => {
@@ -97,7 +107,7 @@ const SignUp = () => {
         const currentUser = {
           userUid: user.uid,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://need-aid.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -200,6 +210,7 @@ const SignUp = () => {
                       </a>
                     </p>
                   )}
+                  {signUpError && <p className="text-danger">{signUpError}</p>}
 
                   <Button
                     type="submit"

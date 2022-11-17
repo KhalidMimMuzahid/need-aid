@@ -13,7 +13,7 @@ const TotalFund = () => {
     specialFund,
   } = allFunds;
   useEffect(() => {
-    fetch("http://localhost:5000/allfunds")
+    fetch("https://need-aid.vercel.app/allfunds")
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

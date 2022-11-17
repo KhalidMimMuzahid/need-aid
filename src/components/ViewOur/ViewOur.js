@@ -14,7 +14,7 @@ const ViewOur = () => {
             <Row className="me-0">
               {/* view-our main component start */}
               <Col xs={12}>
-                <div className="border border-black border-4">
+                <div className="">
                   <Outlet></Outlet>
                 </div>
               </Col>
@@ -28,7 +28,7 @@ const ViewOur = () => {
             <Row className="me-0">
               {/* view-our main component start */}
               <Col xs={8}>
-                <div className="border border-black border-4">
+                <div className="">
                   <Outlet></Outlet>
                 </div>
               </Col>

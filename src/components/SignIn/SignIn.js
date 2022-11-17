@@ -12,6 +12,7 @@ import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaGoogle } from "react-icons/fa";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../context/UserContext";
 
 const SignIn = () => {
@@ -25,12 +26,15 @@ const SignIn = () => {
     signInWithEmail,
     logOut,
     setIsUserAdmin,
+    verifyEmail,
+    resetPassword,
   } = useContext(AuthContext);
   const [userInfo, setUserInfo] = useState({});
   const [error, setError] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
   const handleSubmitForm = (e) => {
     e.preventDefault();
+    setError("");
     setIsLoading(true);
     // console.log(userInfo);
     const { email, password } = userInfo;
@@ -43,24 +47,32 @@ const SignIn = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+
         const currentUser = {
           userUid: user.uid,
         };
-        console.log(currentUser);
+        console.log("login user, ", user);
 
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            localStorage.setItem("token", data.token);
+        if (user?.emailVerified) {
+          fetch("https://need-aid.vercel.app/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              localStorage.setItem("token", data.token);
+            });
+          navigate(from, { replace: true });
+        } else {
+          verifyEmail().then(() => {
+            toast.error("your email is not verified. please verify");
+            setIsLoading(false);
           });
-        navigate(from, { replace: true });
+        }
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -90,6 +102,7 @@ const SignIn = () => {
   //  }
 
   const handleGoogleSignIn = () => {
+    setError("");
     setIsLoading(true);
     console.log("isadmin", isAdmin);
     const { email, password } = userInfo;
@@ -110,7 +123,7 @@ const SignIn = () => {
         console.log("this is admin", userInfo?.isAdmin);
         if (!userInfo?.isAdmin) {
           console.log("this is not admin");
-          fetch("http://localhost:5000/jwt", {
+          fetch("https://need-aid.vercel.app/jwt", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -127,7 +140,7 @@ const SignIn = () => {
           navigate(from, { replace: true });
         } else {
           console.log("this is admin");
-          fetch("http://localhost:5000/isadmin", {
+          fetch("https://need-aid.vercel.app/isadmin", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -158,7 +171,25 @@ const SignIn = () => {
         // ...
       });
   };
-
+  const handleResetPassword = () => {
+    const { email } = userInfo;
+    console.log("email", email);
+    if (!email) {
+      return alert("please enter your email first.");
+    }
+    resetPassword(email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        toast.success("check your email and reset your password");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        setError(errorMessage);
+      });
+  };
   return (
     <MDBContainer fluid>
       <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -223,11 +254,7 @@ const SignIn = () => {
                   </label>
 
                   {error && <p className="text-danger">{error}</p>}
-                  <p className="small mb-2 pb-lg-2">
-                    <a className="text-white-50" href="#!">
-                      Forgot password?
-                    </a>
-                  </p>
+
                   <Button
                     type="submit"
                     variant="primary"
@@ -236,6 +263,11 @@ const SignIn = () => {
                     SignIn
                   </Button>
                 </form>
+                <p className="small mb-2 pb-lg-2 text-center">
+                  <button onClick={handleResetPassword} className="text-black ">
+                    Forgot password?
+                  </button>
+                </p>
               </div>
               <div className="d-flex flex-row mt-3 mb-5">
                 <div className="hover-pointer" onClick={handleGoogleSignIn}>

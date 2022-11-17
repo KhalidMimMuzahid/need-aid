@@ -11,7 +11,7 @@ const Special = () => {
         <Row className="me-0">
           {/* fund main component start */}
           <Col xs={8}>
-            <div className="border border-black border-4">
+            <div className="">
               <Outlet></Outlet>
             </div>
           </Col>

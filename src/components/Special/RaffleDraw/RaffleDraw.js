@@ -24,7 +24,7 @@ const RaffleDraw = () => {
       ticketInfo.userUid = currentUser.uid;
       console.log("all okk", ticketInfo);
       handleClose();
-      fetch("http://localhost:5000/rafflebuy", {
+      fetch("https://need-aid.vercel.app/rafflebuy", {
         method: "POST",
         headers: {
           "content-type": "application/json",

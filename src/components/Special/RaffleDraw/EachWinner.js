@@ -2,18 +2,23 @@ import React from "react";
 
 const EachWinner = ({ winner, index }) => {
   const { buyerId, email, name, phone, photoURL } = winner;
-  const prizeMoney = "10000";
+  let prizeMoney;
   let position = "";
   if (index === 0) {
     position = "first";
+    prizeMoney = "100000";
   } else if (index === 1) {
     position = "second";
+    prizeMoney = "50000";
   } else if (index === 2) {
     position = "third";
+    prizeMoney = "30000";
   } else if (index === 3) {
     position = "fourth";
+    prizeMoney = "20000";
   } else if (index === 4) {
     position = "fifth";
+    prizeMoney = "10000";
   }
 
   console.log(index, ":", winner);

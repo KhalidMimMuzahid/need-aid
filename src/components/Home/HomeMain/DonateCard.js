@@ -7,6 +7,7 @@ import winter from "./../../../assets/img/winter.jpg";
 import sadaqah from "./../../../assets/img/sadaqah.jpg";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/UserContext";
+import { Link } from "react-router-dom";
 
 const DonateCard = () => {
   const { isDark } = useContext(AuthContext);
@@ -149,14 +150,9 @@ const DonateCard = () => {
                   </div>
                 </div>
               </div>
-              <button
-                id=""
-                className="button-two"
-                data-bs-toggle="modal"
-                href="#exampleModal"
-              >
+              <Link to="/fund/firevictims" className="button-two">
                 Donate <i className="fa-solid fa-heart"></i>
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -293,14 +289,9 @@ const DonateCard = () => {
                   </div>
                 </div>
               </div>
-              <button
-                id=""
-                className="button-two"
-                data-bs-toggle="modal"
-                href="#exampleModal"
-              >
+              <Link to="/fund/flood" className="button-two">
                 Donate <i className="fa-solid fa-heart"></i>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -431,14 +422,9 @@ const DonateCard = () => {
                   </div>
                 </div>
               </div>
-              <button
-                id=""
-                className="button-two"
-                data-bs-toggle="modal"
-                href="#exampleModal"
-              >
+              <Link to="/fund/education" className="button-two">
                 Donate <i className="fa-solid fa-heart"></i>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -567,14 +553,10 @@ const DonateCard = () => {
                   </div>
                 </div>
               </div>
-              <button
-                id=""
-                className="button-two"
-                data-bs-toggle="modal"
-                href="#exampleModal"
-              >
+
+              <Link to="/fund/education" className="button-two">
                 Donate <i className="fa-solid fa-heart"></i>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -706,14 +688,9 @@ const DonateCard = () => {
                   </div>
                 </div>
               </div>
-              <button
-                id=""
-                className="button-two"
-                data-bs-toggle="modal"
-                href="#exampleModal"
-              >
+              <Link to="/fund/winter" className="button-two">
                 Donate <i className="fa-solid fa-heart"></i>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -843,14 +820,9 @@ const DonateCard = () => {
                   </div>
                 </div>
               </div>
-              <button
-                id=""
-                className="button-two"
-                data-bs-toggle="modal"
-                href="#exampleModal"
-              >
+              <Link to="/fund/tree-plant" className="button-two">
                 Donate <i className="fa-solid fa-heart"></i>
-              </button>
+              </Link>
             </div>
           </div>
         </div>

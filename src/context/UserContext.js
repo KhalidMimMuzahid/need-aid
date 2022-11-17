@@ -5,6 +5,8 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -17,8 +19,8 @@ export const AuthContext = createContext();
 
 const UserContext = ({ children }) => {
   const googleProvider = new GoogleAuthProvider();
-  const [currentUser, setCurrentUser] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isUserAdmin, setIsUserAdmin] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const signInWithGoogle = () => {
@@ -33,16 +35,24 @@ const UserContext = ({ children }) => {
   const signInWithEmail = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const verifyEmail = () => {
+    return sendEmailVerification(auth.currentUser);
+  };
+  const resetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setIsUserAdmin(false);
-      if (user) {
+      console.log("onauthstate", user);
+      if (user === null || user.emailVerified) {
         setCurrentUser(user);
         setIsLoading(false);
-      } else {
-        setCurrentUser(null);
-        setIsLoading(false);
       }
+      // else {
+      //   setCurrentUser(null);
+      //   setIsLoading(false);
+      // }
     });
     return () => unsubscribe();
   }, []);
@@ -66,6 +76,8 @@ const UserContext = ({ children }) => {
     logOut,
     isUserAdmin,
     setIsUserAdmin,
+    verifyEmail,
+    resetPassword,
   };
   return (
     <AuthContext.Provider value={authValue}>{children}</AuthContext.Provider>

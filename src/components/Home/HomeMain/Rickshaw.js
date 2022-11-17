@@ -1,9 +1,36 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../context/UserContext";
 import ricksaw from "./../../../assets/img/sabolombi.jpg";
 
 const Rickshaw = () => {
+  const { currentUser } = useContext(AuthContext);
   const [defaultAmount, setDefaultAmount] = useState(null);
+  // const [fundData, setFundData] = useState({});
+  // const handleInputChange = (e) => {
+  //   const field = e.target.name;
+  //   const value = e.target.value;
+  //   let newFundData = { ...fundData };
+  //   newFundData[field] = value;
+  //   setFundData(newFundData);
+  //   console.log(fundData);
+  // };
+  // const handleFormSubmit = () => {
+  //   const x = {
+  //     name: currentUser?.displayName,
+  //     email: currentUser?.email,
+  //     userUid: currentUser?.uid,
+  //     userPhoto: currentUser?.photoURL,
+  //   };
+
+  //   console.log("newfund", fundData);
+  //   let newFundData = { ...fundData };
+  //   if (!fundData?.amount) {
+  //     newFundData.amount = defaultAmount;
+  //     setFundData(newFundData);
+  //   }
+  //   console.log("newfund", fundData);
+  // };
   return (
     <div>
       <div></div>
@@ -52,14 +79,23 @@ const Rickshaw = () => {
                   </div>
                   <form action="">
                     <input
-                      type="number"
-                      name="Amount"
+                      type="text"
+                      name="amount"
                       placeholder="Enter other amount"
                       className="w-100 other-amount"
                       defaultValue={defaultAmount}
                       required
                     />
                     <input
+                      defaultValue={currentUser?.displayName}
+                      type="text"
+                      name="name"
+                      placeholder="your name"
+                      className="w-100"
+                      required
+                    />
+                    <input
+                      defaultValue={currentUser?.email}
                       type="email"
                       name="email"
                       placeholder="Email"
@@ -68,7 +104,7 @@ const Rickshaw = () => {
                     />
 
                     <p className="donation-style-two">
-                      <Link className="button mt-3" type="submit">
+                      <Link to="/fund/rickshaw" className="button mt-3">
                         Donate Now
                       </Link>
                     </p>

@@ -8,11 +8,19 @@ const GiftCard = () => {
 
   return (
     <div>
-      {giftCards.map((giftCard) => (
-        <EachGiftCard key={giftCard._id} giftCard={giftCard}></EachGiftCard>
-      ))}
+      {giftCards.length ? (
+        giftCards.map((giftCard) => (
+          <EachGiftCard key={giftCard._id} giftCard={giftCard}></EachGiftCard>
+        ))
+      ) : (
+        <p className="fs-1  m-5 p-5 text-center">you have no gift card</p>
+      )}
     </div>
   );
 };
 
 export default GiftCard;
+
+// {giftCards.map((giftCard) => (
+//   <EachGiftCard key={giftCard._id} giftCard={giftCard}></EachGiftCard>
+// ))}

@@ -12,6 +12,7 @@ import {
   FaSignOutAlt,
   FaSun,
 } from "react-icons/fa";
+import needAid from "../../assets/img/Need Aid.png";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/UserContext";
 import { MoonIcon, LightBulbIcon } from "@heroicons/react/24/solid";
@@ -40,7 +41,7 @@ const Header = () => {
   //     // console.log(totalNotification);
   //     // console.log("useruid", currentUser.uid);
   //     setTimeout(() => {
-  //       fetch("http://localhost:5000/checknotification", {
+  //       fetch("https://need-aid.vercel.app/checknotification", {
   //         headers: {
   //           "Content-Type": "application/json",
   //           totalNotification: totalNotification,
@@ -66,11 +67,11 @@ const Header = () => {
     const totalNotification = notification.length;
     // console.log("totalNotification", totalNotification);
     // console.log("useruid", currentUser.uid);
-    await fetch("http://localhost:5000/checknotification", {
+    await fetch("https://need-aid.vercel.app/checknotification", {
       headers: {
         "Content-Type": "application/json",
         totalNotification: totalNotification,
-        userUid: currentUser.uid,
+        userUid: currentUser?.uid,
       },
     })
       .then((res) => res.json())
@@ -176,7 +177,12 @@ const Header = () => {
         <nav className="navbar navbar-expand-lg bg-warning text-white p-1">
           <div className="container">
             <Link className="navbar-brand fs-1 " to="/">
-              NEED AID
+              <img
+                src={needAid}
+                className=""
+                style={{ height: "50px", width: "auto" }}
+                alt="Need-Aid"
+              />
             </Link>
 
             <button
@@ -438,7 +444,7 @@ const Header = () => {
                       <li>
                         <Link
                           className="dropdown-item"
-                          to={`/special/giftcard/${currentUser.uid}`}
+                          to={`/special/giftcard/${currentUser?.uid}`}
                         >
                           Gift Card
                         </Link>
@@ -452,17 +458,24 @@ const Header = () => {
                   </li>
                 )}
                 {isUserAdmin || (
-                  <li className="nav-item fw-bolder">
-                    <Link className="nav-link select-bar" to="/contact">
-                      Contact us
-                    </Link>
-                  </li>
+                  <>
+                    <li className="nav-item fw-bolder">
+                      <Link className="nav-link select-bar" to="/contact">
+                        Contact us
+                      </Link>
+                    </li>
+                    <li className="nav-item fw-bolder">
+                      <Link className="nav-link select-bar" to="/sponsership">
+                        get sponsership
+                      </Link>
+                    </li>
+                  </>
                 )}
               </ul>
 
               {isUserAdmin || (
                 <p className="donation-style-two">
-                  <Link to="rickshaw" className="button mt-3 ms-1">
+                  <Link to="/fund/rickshaw" className="button mt-3 ms-1">
                     1000 Takai{" "}
                     <img
                       src="/img/cycle-rickshaw.png"
