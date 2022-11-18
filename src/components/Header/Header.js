@@ -35,60 +35,35 @@ const Header = () => {
         console.log(error);
       });
   };
-  // const checkNotification = () => {
-  //   setInterval(() => {
-  //     const totalNotification = notification.length;
-  //     // console.log(totalNotification);
-  //     // console.log("useruid", currentUser.uid);
-  //     setTimeout(() => {
-  //       fetch("https://need-aid.vercel.app/checknotification", {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           totalNotification: totalNotification,
-  //           userUid: currentUser.uid,
-  //         },
-  //       })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           // console.log(data);
-  //           if (data.newNotification) {
-  //             setNotification(data.currentNotificetion);
 
-  //             setCountNotifications(countNotifications + data.newNotification);
-  //           }
-  //         });
-  //     }, 5000);
-  //   }, 15000);
-  // };
-  // checkNotification();
+  if (!isUserAdmin) {
+    const handleNotification = async () => {
+      // console.log("hitted");
+      const totalNotification = notification.length;
+      // console.log("totalNotification", totalNotification);
+      // console.log("useruid", currentUser.uid);
+      await fetch("https://need-aid.vercel.app/checknotification", {
+        headers: {
+          "Content-Type": "application/json",
+          totalNotification: totalNotification,
+          userUid: currentUser?.uid,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          if (data.newNotification) {
+            setNotification(data.currentNotificetion);
 
-  const handleNotification = async () => {
-    // console.log("hitted");
-    const totalNotification = notification.length;
-    // console.log("totalNotification", totalNotification);
-    // console.log("useruid", currentUser.uid);
-    await fetch("https://need-aid.vercel.app/checknotification", {
-      headers: {
-        "Content-Type": "application/json",
-        totalNotification: totalNotification,
-        userUid: currentUser?.uid,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        if (data.newNotification) {
-          setNotification(data.currentNotificetion);
-
-          setCountNotifications(countNotifications + data.newNotification);
-          setTimeout(() => handleNotification(), 10000);
-        } else {
-          setTimeout(() => handleNotification(), 10000);
-        }
-      });
-  };
-
-  handleNotification();
+            setCountNotifications(countNotifications + data.newNotification);
+            setTimeout(() => handleNotification(), 10000);
+          } else {
+            setTimeout(() => handleNotification(), 10000);
+          }
+        });
+    };
+    handleNotification();
+  }
 
   // <button onClick={handleNotification}>xxx</button>
   const handleClickNptification = () => {

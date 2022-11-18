@@ -13,6 +13,7 @@ import {
   MDBCol,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <MDBFooter className="text-center text-lg-start text-white bg-dark mt-5">
@@ -56,50 +57,50 @@ const Footer = () => {
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
-              <h6 className="text-uppercase fw-bold mb-4">Products</h6>
+              <h6 className="text-uppercase fw-bold mb-4">Funds</h6>
               <p>
-                <a href="#!" className="text-reset">
-                  Angular
-                </a>
+                <Link to="/fund/firevictims" className="text-reset">
+                  Fire Victims
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  React
-                </a>
+                <Link to="/fund/orphan" className="text-reset">
+                  Orphan funds
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  Vue
-                </a>
+                <Link to="/fund/eyesight" className="text-reset">
+                  Eyesight restoration
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  Laravel
-                </a>
+                <Link to="/fund/education" className="text-reset">
+                  Education
+                </Link>
               </p>
             </MDBCol>
 
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
-                <a href="#!" className="text-reset">
-                  Pricing
-                </a>
+                <Link to="/viewour/total-fund" className="text-reset">
+                  Total Fund
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  Settings
-                </a>
+                <Link to="/special/raffleresult" className="text-reset">
+                  Raffle Result
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  Orders
-                </a>
+                <Link to="/fund/rickshaw" className="text-reset">
+                  1000 takai rickshaw
+                </Link>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  Help
-                </a>
+                <Link to="/populer-work" className="text-reset">
+                  Popular Work
+                </Link>
               </p>
             </MDBCol>
 
@@ -129,9 +130,9 @@ const Footer = () => {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
         © 2021 Copyright:
-        <a className="text-reset fw-bold" href="">
+        <Link className="text-reset fw-bold" to="">
           Need Aid
-        </a>
+        </Link>
       </div>
     </MDBFooter>
   );
