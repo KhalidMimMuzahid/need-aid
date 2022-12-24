@@ -5,7 +5,6 @@
   ###     =>Any user can get sponsorship to advertise their product. When admin accept this sponsorship this advertise is shown somewhere of this system
   ###     =>Any User can buy a lottery ticket for raffle draw and only the admin can draw this raffle . after that the draw result will be published on this system. 
 
-## GitHub Client:  https://github.com/KhalidMimMuzahid/need-aid-client-side-react-app
 ## GitHub Server:  https://github.com/KhalidMimMuzahid/need-aid-server-side
 ## Live site:  https://need-aid.web.app/
 ## admin email: ------------
